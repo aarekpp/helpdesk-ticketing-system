@@ -1,0 +1,228 @@
+@import "../../../../scss/colors.scss";
+@import "../../../../scss/breakpoints.scss";
+
+.ticketsBoard {
+  padding: 1.5rem 0.5rem;
+
+  .boardHeader {
+    width: 100%;
+    height: 3.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: $border;
+    border-radius: 0.5rem 0.5rem 0 0;
+    box-shadow: $shadow;
+
+    .headerButton {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border-radius: 0.4rem 0 0 0;
+
+      .buttonText {
+        color: black;
+        position: relative;
+      }
+
+      .unreadBadge {
+        position: absolute;
+        top: -0.8rem;
+        right: -1.1rem;
+        background-color: $primary-color;
+        color: white;
+        border-radius: 50%;
+        padding: 2px 6px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+
+        &.active {
+          background-color: white;
+          color: lighten($primary-color, 10%);
+        }
+
+        &.inactive {
+          background-color: lighten($primary-color, 10%);
+          color: white;
+        }
+      }
+
+      &:first-child {
+        border-right: $border;
+      }
+
+      &:last-child {
+        border-radius: 0 0.4rem 0 0;
+      }
+
+      &:hover {
+        background-color: lighten($primary-color, 40%);
+
+        .buttonText {
+          color: black;
+        }
+      }
+
+      &.selected {
+        background-color: $primary-color;
+
+        .buttonText {
+          color: white;
+        }
+      }
+
+      &.disabled {
+        pointer-events: none;
+        background-color: darken(white, 40%);
+        opacity: 0.5;
+        cursor: default;
+
+        &:hover {
+          background-color: white;
+
+          .buttonText {
+            color: black;
+          }
+        }
+      }
+    }
+  }
+
+  .ticketsContainer {
+    border: $border;
+    border-top: none;
+    border-radius: 0 0 0.5rem 0.5rem;
+    box-shadow: $shadow;
+
+    .ticket {
+      border-bottom: $border;
+      padding: 0.5rem;
+
+      .ticketHeader {
+        padding: 1rem 0.5rem;
+
+        p {
+          font-size: 1.2rem;
+          font-weight: 700;
+        }
+      }
+
+      .ticketContent {
+        padding: 0 0.5rem;
+
+        p {
+          margin: 0 0 0.5rem 0;
+          font-weight: 700;
+        }
+      }
+
+      .buttonBox {
+        display: grid;
+        place-items: center;
+        margin: 1rem auto;
+        width: 90%;
+
+        .button {
+          width: 100%;
+          height: 2.5rem;
+          border-radius: 0.5rem;
+          border: none;
+          outline: none;
+          background-color: $primary-color;
+          color: white;
+          cursor: pointer;
+          transition: all 0.2s ease;
+
+          &:hover {
+            background-color: darken($primary-color, 10%);
+            transform: translateY(-0.2rem);
+          }
+        }
+      }
+
+      &.readed {
+        background-color: darken(white, 15%);
+
+        .ticketHeader {
+          p {
+            font-weight: 300;
+          }
+        }
+
+        .ticketContent {
+          p {
+            font-weight: 300;
+          }
+        }
+      }
+
+      &.ticketHighlight {
+        background-color: rgba(0, 255, 0, 0.2);
+        transition: background-color 5s ease-out;
+      }
+
+      &.ticketFlash {
+        animation: flash 1s ease-out 5;
+      }
+
+      &.ticketFlasInf {
+        animation: flash 1s infinite ease-out;
+      }
+
+      &.ticketUpdateFlash {
+        animation: flash 1s ease-out 1;
+      }
+
+      &.ticketEnter {
+        animation: grow 0.5s ease-out;
+      }
+
+      &.ticketList {
+        transition: all 0.5s ease-out;
+      }
+
+      &:last-child {
+        border-bottom: none;
+        border-radius: 0 0 0.4rem 0.4rem;
+      }
+    }
+  }
+}
+
+@keyframes flash {
+  0% {
+    background-color: rgba(255, 255, 0, 0.5);
+  }
+  50% {
+    background-color: rgba(255, 255, 0, 0);
+  }
+  100% {
+    background-color: rgba(255, 255, 0, 0.5);
+  }
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@include respond-to(xl) {
+  .ticketsBoard {
+    width: 80%;
+    margin: auto;
+  }
+}

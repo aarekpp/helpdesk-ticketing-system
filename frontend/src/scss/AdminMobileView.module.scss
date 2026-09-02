@@ -1,0 +1,47 @@
+@import "./breakpoints.scss";
+@import "./colors.scss";
+
+.mobileContainer {
+  width: 90%;
+  margin: auto;
+  padding: 0 0 1rem 0;
+
+  .tilesContainer {
+    width: 100%;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0 0 0;
+    height: calc(100vh - 13rem);
+
+    .noDataInfo {
+      text-align: center;
+      font-size: 1.1rem;
+    }
+  }
+}
+
+@include respond-to(sm) {
+  .mobileContainer {
+    width: 100%;
+    padding: 0 1.5rem;
+
+    .topContainer {
+      width: 100%;
+      margin: 1.5rem 0;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tilesContainer {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      place-items: center;
+      gap: 1.5rem;
+      align-content: start;
+    }
+  }
+}

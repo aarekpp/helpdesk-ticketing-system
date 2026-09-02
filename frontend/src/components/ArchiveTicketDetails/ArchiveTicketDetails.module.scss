@@ -1,0 +1,657 @@
+@import "../../scss/colors.scss";
+@import "../../scss/breakpoints.scss";
+
+.archiveContainer {
+  width: 100%;
+  height: calc(100vh - 6.5rem);
+  padding: 1rem 0.5rem;
+
+  .tabsContainer {
+    width: 100%;
+    height: 2.5rem;
+    display: flex;
+    flex-direction: row;
+    border: $border;
+    border-radius: 0.5rem 0.5rem 0 0;
+
+    .tab {
+      width: 100%;
+      height: 100%;
+      border-right: $border;
+      display: grid;
+      place-items: center;
+      transition: all 250ms ease;
+      border-radius: 0.4rem 0 0 0;
+      cursor: pointer;
+
+      &:nth-child(2) {
+        border-radius: 0;
+      }
+
+      &:last-child {
+        border-right: none;
+        position: relative;
+        border-radius: 0 0.4rem 0 0;
+      }
+
+      &:hover {
+        background-color: lighten($primary-color, 40%);
+
+        p {
+          color: black;
+        }
+      }
+
+      &.selected {
+        background-color: $primary-color;
+
+        p {
+          color: white;
+        }
+      }
+
+      &.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+
+      .unreadBadge {
+        position: absolute;
+        top: -0.8rem;
+        right: -1.1rem;
+        background-color: $primary-color;
+        color: white;
+        border-radius: 50%;
+        padding: 2px 6px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+
+        &.active {
+          background-color: white;
+          color: lighten($primary-color, 10%);
+        }
+
+        &.inactive {
+          background-color: lighten($primary-color, 10%);
+          color: white;
+        }
+      }
+    }
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    border: $border;
+    border-top: none;
+    border-radius: 0 0 0.5rem 0.5rem;
+    box-shadow: $shadow;
+
+    .ticketPreviewContainer {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      display: none;
+      overflow: auto;
+      padding: 1rem 0.5rem 0 0.5rem;
+
+      &.visible {
+        display: block;
+      }
+
+      .contentBox {
+        .ticketContent {
+          padding: 0 0.5rem;
+
+          .title {
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin: 0 0 1rem 0;
+          }
+
+          .ticketData {
+            line-height: 1.5rem;
+
+            .boldText {
+              font-weight: bold;
+            }
+          }
+
+          .ticketDescription {
+            width: 100%;
+            padding: 1rem 0.5rem;
+            outline: none;
+            overflow: auto;
+            font-family: Arial, sans-serif;
+            background-color: white;
+            border: $border;
+            border-radius: 0.5rem;
+            margin: 1.5rem auto;
+
+            p,
+            div {
+              margin: 0.5rem 0;
+              padding: 0;
+              font-weight: normal;
+            }
+
+            b,
+            strong {
+              font-weight: bold;
+            }
+
+            i,
+            em {
+              font-style: italic;
+            }
+
+            u {
+              text-decoration: underline;
+            }
+
+            h1 {
+              font-size: 2rem;
+              font-weight: bold;
+            }
+
+            h2 {
+              font-size: 1.5rem;
+              font-weight: bold;
+            }
+
+            ul,
+            ol {
+              padding-left: 20px;
+              margin-bottom: 1em;
+            }
+
+            ul {
+              list-style-type: disc;
+            }
+
+            ol {
+              list-style-type: decimal;
+            }
+
+            table {
+              width: 100%;
+              border-collapse: collapse;
+              margin-bottom: 1em;
+            }
+
+            table,
+            th,
+            td {
+              border: 1px solid black;
+            }
+
+            th,
+            td {
+              padding: 8px;
+              text-align: left;
+            }
+          }
+        }
+
+        .filesSection {
+          width: 100%;
+          margin: 0 0 1rem 0;
+
+          .noFilesInfo {
+            text-align: center;
+          }
+
+          .fileList {
+            margin: 1rem 0 0 0;
+            width: 100%;
+
+            ul {
+              list-style-type: none;
+
+              .fileItem {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.5rem;
+                border: 0.1rem solid #bdbdbd;
+                border-radius: 0.5rem;
+                margin: 0 0 0.5rem 0;
+                background-color: #fff;
+                transition: background-color 0.3s ease;
+
+                &:hover {
+                  background-color: #f1f1f1;
+                }
+
+                .fileName {
+                  color: #007bff;
+                  text-decoration: none;
+                  font-weight: bold;
+                  cursor: pointer;
+                  transition: color 0.3s ease;
+                  max-width: 90%;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+
+                  &:hover {
+                    color: #0056b3;
+                  }
+                }
+
+                .removeButton {
+                  padding: 6px 12px;
+                  background-color: red;
+                  color: white;
+                  border: none;
+                  border-radius: 0.5rem;
+                  cursor: pointer;
+                  transition: background-color 0.3s ease;
+                  margin: 0 0 0 0.5rem;
+
+                  &:hover {
+                    background-color: darken(red, 10%);
+                  }
+                }
+              }
+            }
+          }
+
+          .galleryContainer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0 0 0;
+            width: 100%;
+
+            .previewItem {
+              position: relative;
+              width: 100%;
+              height: 15rem;
+              border-radius: 0.5rem;
+              overflow: hidden;
+              cursor: pointer;
+
+              .thumbnail {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.4s ease;
+              }
+
+              .fileInfo {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.6);
+                border-radius: 0.5rem;
+
+                .fileName {
+                  width: 100%;
+                  padding: 0 0 0.2rem 0.5rem;
+                  border-radius: 0 0 0.5rem 0.5rem;
+                  color: white;
+                  text-decoration: none;
+                  font-weight: bold;
+                  cursor: pointer;
+                  transition: color 0.3s ease;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  text-align: left;
+                  font-size: 0.8rem;
+                }
+              }
+
+              .removeButtonOnPreview {
+                position: absolute;
+                top: 0.5rem;
+                right: 0.5rem;
+                background-color: rgba(255, 0, 0, 0.9);
+                border: none;
+                color: white;
+                padding: 0.5rem 1rem;
+                border-radius: 0.5rem;
+                cursor: pointer;
+                font-size: 0.8rem;
+                transition: background-color 0.2s ease;
+
+                &:hover {
+                  background-color: darken(rgba(255, 0, 0, 1), 10%);
+                }
+              }
+
+              &:hover {
+                .thumbnail {
+                  transform: scale(1.05);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .historyContainer {
+      display: none;
+      position: relative;
+      background-color: white;
+      padding: 1rem 0.5rem;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+
+      &.visible {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .entryContainer {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        margin: 0 0 1.5rem 0;
+
+        .entryNumber {
+          display: grid;
+          place-items: center;
+          font-size: 2rem;
+        }
+
+        .entryText {
+          display: flex;
+          flex-direction: column;
+          gap: 0.3rem;
+
+          .date {
+            font-size: 0.9rem;
+          }
+          .text {
+            font-size: 1.2rem;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .messagesContainer {
+      width: 100%;
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 0.5rem;
+      background-color: white;
+      display: none;
+
+      &.visible {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .noMessages {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        place-items: center;
+      }
+
+      .authorHeader {
+        margin: 1rem 0 0 0;
+
+        p {
+          font-size: 0.9rem;
+          font-weight: 300;
+          padding: 0 0 0 0.5rem;
+        }
+      }
+
+      .fileOnlyMessage {
+        max-width: 80%;
+
+        .container {
+          .fileContainer {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 1rem;
+            margin: 0.25rem 0 0.25rem auto;
+            border-radius: 0.75rem;
+            width: max-content;
+            cursor: pointer;
+
+            .iconBox {
+              margin: 0 0.5rem 0 0;
+
+              .icon {
+                width: 1.2rem;
+                height: 1.2rem;
+
+                path {
+                  color: white;
+                }
+              }
+            }
+
+            .fileName {
+              width: 100%;
+              color: white;
+              font-size: 0.9rem;
+              white-space: normal;
+              overflow-wrap: break-word;
+              word-wrap: break-word;
+              text-align: left;
+            }
+          }
+        }
+
+        &.authorMessage {
+          margin-left: auto;
+          display: flex;
+          flex-direction: row;
+          gap: 0.2rem;
+
+          .container {
+            margin: 0 0 0 auto;
+
+            .fileContainer {
+              background-color: $primary-color;
+            }
+          }
+
+          .hourContainer {
+            display: flex;
+            align-items: flex-end;
+
+            p {
+              font-size: 0.8rem;
+              margin: 0 0 0.5rem 0;
+            }
+          }
+        }
+
+        &.otherMessage {
+          display: flex;
+          flex-direction: row-reverse;
+          gap: 0.2rem;
+
+          .container {
+            margin: 0 auto 0 0;
+
+            .fileContainer {
+              margin: 0.25rem auto 0.25rem 0;
+              background-color: $background-dark;
+              flex-direction: row-reverse;
+
+              .iconBox {
+                margin: 0 0 0 0.5rem;
+
+                .icon {
+                  path {
+                    color: black;
+                  }
+                }
+              }
+
+              .fileName {
+                color: black;
+              }
+            }
+          }
+
+          .hourContainer {
+            display: flex;
+            align-items: flex-end;
+
+            p {
+              font-size: 0.7rem;
+              margin: 0 0 0.5rem 0;
+            }
+          }
+        }
+      }
+
+      .message {
+        width: max-content;
+        max-width: 100%;
+        display: flex;
+        gap: 0.5rem;
+
+        .container {
+          margin: 0.25rem 0;
+          padding: 0.5rem 1rem;
+          border-radius: 1rem;
+
+          .messageText {
+            font-size: 0.9rem;
+
+            &.withFiles {
+              margin: 0 0 0.5rem 0;
+            }
+          }
+
+          .fileContainer {
+            width: max-content;
+            max-width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin: 0 0 0.5rem auto;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            cursor: pointer;
+
+            .iconBox {
+              margin: 0 0.5rem 0 0;
+
+              .icon {
+                width: 1.2rem;
+                height: 1.2rem;
+
+                path {
+                  color: black;
+                }
+              }
+            }
+
+            .fileName {
+              flex-shrink: 1;
+              font-size: 0.9rem;
+              color: black;
+              white-space: normal;
+              overflow-wrap: break-word;
+              word-wrap: break-word;
+              max-width: calc(100% - 1.5rem);
+              text-align: left;
+            }
+          }
+        }
+
+        .hourContainer {
+          display: flex;
+          align-items: flex-end;
+
+          p {
+            font-size: 0.8rem;
+            margin: 0 0 0.5rem 0;
+          }
+        }
+
+        &.authorMessage {
+          margin-left: auto;
+          flex-direction: row;
+
+          .container {
+            background-color: $primary-color;
+
+            .messageText {
+              color: white;
+            }
+
+            .fileContainer {
+              background-color: $background-dark;
+            }
+          }
+        }
+
+        &.otherMessage {
+          flex-direction: row-reverse;
+
+          .container {
+            background-color: $background-dark;
+
+            .fileContainer {
+              background-color: $third-color;
+              flex-direction: row-reverse;
+              margin: 0 auto 0.5rem 0;
+
+              .iconBox {
+                margin: 0 0 0 0.5rem;
+
+                .icon {
+                  path {
+                    color: white;
+                  }
+                }
+              }
+
+              .fileName {
+                color: white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include respond-to(lg) {
+  .archiveContainer {
+    width: 80%;
+    margin: auto;
+  }
+
+  .ticketPreviewContainer {
+    padding: 2rem;
+  }
+
+  .historyContainer {
+    padding: 2rem;
+  }
+}
+
+@include respond-to(xl) {
+  .archiveContainer {
+    width: 60%;
+  }
+
+  .historyContainer {
+    padding: 2rem 3rem;
+  }
+}

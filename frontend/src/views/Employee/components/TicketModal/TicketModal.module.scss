@@ -1,0 +1,344 @@
+@import "../../../../scss/colors.scss";
+@import "../../../../scss/breakpoints.scss";
+
+.ticketModalContainer {
+  position: fixed;
+  top: 100vh;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  transition: all 250ms ease-in-out;
+  background-color: white;
+  z-index: 1000;
+  opacity: 0;
+  overflow: auto;
+
+  &.show {
+    top: 0;
+    opacity: 1;
+  }
+
+  .modalHeader {
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: $shadow;
+    padding: 0 1rem;
+
+    p {
+      font-size: 1.3rem;
+    }
+
+    .iconBox {
+      width: 2rem;
+      height: 2rem;
+
+      .button {
+        width: 100%;
+        height: 100%;
+        outline: none;
+        border: none;
+        background-color: transparent;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+
+        * {
+          transition: all 200ms ease;
+        }
+
+        .icon {
+          width: 100%;
+          height: 100%;
+
+          path {
+            fill: black;
+          }
+        }
+
+        &:hover {
+          .icon {
+            path {
+              fill: red;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .modalContent {
+    padding: 1rem 0.5rem;
+
+    .ticketContent {
+      padding: 0 0.5rem;
+
+      .title {
+        font-weight: bold;
+        font-size: 1.3rem;
+        margin: 0 0 1rem 0;
+      }
+
+      .ticketData {
+        line-height: 1.5rem;
+
+        .boldText {
+          font-weight: bold;
+        }
+      }
+
+      .ticketDescription {
+        width: 100%;
+        min-height: 20rem;
+        padding: 1rem 0.5rem;
+        outline: none;
+        overflow: auto;
+        font-family: Arial, sans-serif;
+        background-color: white;
+        border: $border;
+        border-radius: 0.5rem;
+        margin: 1.5rem auto;
+
+        p,
+        div {
+          margin: 0.5rem 0;
+          padding: 0;
+          font-weight: normal;
+        }
+
+        b,
+        strong {
+          font-weight: bold;
+        }
+
+        i,
+        em {
+          font-style: italic;
+        }
+
+        u {
+          text-decoration: underline;
+        }
+
+        h1 {
+          font-size: 2rem;
+          font-weight: bold;
+        }
+
+        h2 {
+          font-size: 1.5rem;
+          font-weight: bold;
+        }
+
+        ul,
+        ol {
+          padding-left: 20px;
+          margin-bottom: 1em;
+        }
+
+        ul {
+          list-style-type: disc;
+        }
+
+        ol {
+          list-style-type: decimal;
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 1em;
+        }
+
+        table,
+        th,
+        td {
+          border: 1px solid black;
+        }
+
+        th,
+        td {
+          padding: 8px;
+          text-align: left;
+        }
+      }
+    }
+
+    .filesSection {
+      width: 100%;
+      margin: 0 0 1rem 0;
+
+      .noFilesInfo {
+        text-align: center;
+      }
+
+      .fileList {
+        margin: 1rem 0 0 0;
+        width: 100%;
+
+        ul {
+          list-style-type: none;
+
+          .fileItem {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem;
+            border: 0.1rem solid #bdbdbd;
+            border-radius: 0.5rem;
+            margin: 0 0 0.5rem 0;
+            background-color: #fff;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+              background-color: #f1f1f1;
+            }
+
+            .fileName {
+              color: #007bff;
+              text-decoration: none;
+              font-weight: bold;
+              cursor: pointer;
+              transition: color 0.3s ease;
+              max-width: 70%;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+
+              &:hover {
+                color: #0056b3;
+              }
+            }
+
+            .removeButton {
+              padding: 6px 12px;
+              background-color: red;
+              color: white;
+              border: none;
+              border-radius: 0.5rem;
+              cursor: pointer;
+              transition: background-color 0.3s ease;
+              margin: 0 0 0 0.5rem;
+
+              &:hover {
+                background-color: darken(red, 10%);
+              }
+            }
+          }
+        }
+      }
+
+      .galleryContainer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin: 1rem 0 0 0;
+        width: 100%;
+
+        .previewItem {
+          position: relative;
+          width: 100%;
+          height: 15rem;
+          border-radius: 0.5rem;
+          overflow: hidden;
+          cursor: pointer;
+
+          .thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+          }
+
+          .fileInfo {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 0.5rem;
+
+            .fileName {
+              width: 100%;
+              padding: 0 0 0.2rem 0.5rem;
+              border-radius: 0 0 0.5rem 0.5rem;
+              color: white;
+              text-decoration: none;
+              font-weight: bold;
+              cursor: pointer;
+              transition: color 0.3s ease;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              text-align: left;
+              font-size: 0.8rem;
+            }
+          }
+
+          .removeButtonOnPreview {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background-color: rgba(255, 0, 0, 0.9);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background-color 0.2s ease;
+
+            &:hover {
+              background-color: darken(rgba(255, 0, 0, 1), 10%);
+            }
+          }
+
+          &:hover {
+            .thumbnail {
+              transform: scale(1.05);
+            }
+          }
+        }
+      }
+    }
+
+    .buttonsBox {
+      width: 100%;
+      padding: 0 0.5rem;
+      height: 2.5rem;
+      display: grid;
+      place-items: center;
+
+      .button {
+        width: 100%;
+        height: 100%;
+        outline: none;
+        border: none;
+        border-radius: 0.5rem;
+        background-color: $primary-color;
+        color: white;
+        letter-spacing: 0.1rem;
+        transition: all 0.15s ease;
+        cursor: pointer;
+
+        &:not(:disabled):hover {
+          transform: translateY(-0.2rem);
+          background-color: darken($primary-color, 10%);
+        }
+
+        &:disabled {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
+
+@include respond-to(xl) {
+  .modalContent {
+    width: 70%;
+    margin: auto;
+  }
+}

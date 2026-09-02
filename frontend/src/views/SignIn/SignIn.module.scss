@@ -1,0 +1,42 @@
+@import "../../scss/colors.scss";
+@import "../../scss/breakpoints.scss";
+
+.signinContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .pageHeader {
+    width: 100%;
+    height: 4rem;
+    background-color: $primary-color;
+    display: grid;
+    place-items: center;
+    box-shadow: $shadow;
+
+    h1 {
+      font-size: 2rem;
+      text-align: center;
+      color: white;
+      letter-spacing: 0.1rem;
+    }
+  }
+
+  .signInForm {
+    margin: 4rem auto auto auto;
+    background-color: $background-light;
+    border-radius: 0.5rem;
+    border: $border;
+  }
+
+  @include respond-to(sm) {
+    .pageHeader {
+      height: 4.5rem;
+
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
+  }
+}

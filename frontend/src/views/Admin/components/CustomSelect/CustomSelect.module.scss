@@ -1,0 +1,255 @@
+@import "../../../../scss/colors.scss";
+@import "../../../../scss/breakpoints.scss";
+
+.selectContainer {
+  margin: 0.5rem 0 0 0;
+  border: $border;
+  border-radius: 0.5rem;
+
+  .textInfo {
+    text-align: center;
+    margin: 1rem 0;
+  }
+
+  .selectedItems {
+    margin: 1rem 0.5rem;
+
+    .selectedItem {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin: 0 0 0.5rem 0;
+      min-height: 2.5rem;
+
+      .itemName {
+        width: 100%;
+      }
+
+      .deleteButton {
+        width: 30%;
+        height: 2rem;
+        border-radius: 0.5rem;
+        display: grid;
+        place-items: center;
+        border: none;
+        outline: none;
+        background-color: $error-color;
+        cursor: pointer;
+
+        .icon {
+          width: 80%;
+          height: 80%;
+          fill: white;
+        }
+
+        &:hover {
+          background-color: darken($error-color, 10%);
+        }
+      }
+    }
+  }
+
+  .customSelectContainer {
+    width: 100%;
+    position: relative;
+  }
+
+  .buttonBox {
+    width: 90%;
+    height: 2.2rem;
+    margin: 0 auto 1rem auto;
+    display: grid;
+    place-items: center;
+
+    .button {
+      width: 100%;
+      height: 100%;
+      background-color: $primary-color;
+      border: none;
+      outline: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      * {
+        transition: all 200ms ease;
+      }
+
+      &:hover {
+        background-color: darken($primary-color, 8);
+
+        .iconBox {
+          .icon {
+            transform: scale(1.1);
+          }
+        }
+
+        span {
+          font-size: 1.2rem;
+        }
+      }
+
+      &:disabled {
+        cursor: default;
+        opacity: 50%;
+
+        &:hover {
+          background-color: $primary-color;
+
+          .iconBox {
+            .icon {
+              transform: scale(1);
+            }
+          }
+
+          span {
+            font-size: 1rem;
+          }
+        }
+      }
+
+      .iconBox {
+        width: 2.2rem;
+        height: 2.2rem;
+        display: grid;
+        place-items: center;
+        fill: white;
+      }
+
+      span {
+        color: white;
+      }
+    }
+  }
+}
+
+.customSelect {
+  width: 90%;
+  margin: auto;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease-out;
+
+  &.show {
+    max-height: 10rem;
+  }
+
+  .selectBox {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: $border;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+
+    &.open {
+      border-radius: 0.5rem 0.5rem 0 0;
+    }
+
+    .arrowIconBox {
+      min-height: 2rem;
+      min-width: 2rem;
+      display: grid;
+      place-items: center;
+
+      .icon {
+        width: 100%;
+        height: 100%;
+        fill: black;
+      }
+    }
+  }
+
+  .options {
+    width: 90%;
+    border: $border;
+    border-top: none;
+    border-radius: 0 0 0.5rem 0.5rem;
+    position: absolute;
+    z-index: 100;
+    background-color: white;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+
+    &.show {
+      transform: scaleY(1);
+    }
+
+    .option {
+      padding: 0.5rem;
+      border-bottom: 0.1rem solid #bdbdbd;
+      cursor: pointer;
+
+      &:last-child {
+        border: none;
+      }
+
+      &:hover {
+        background-color: darken(white, 20%);
+      }
+
+      &.selected {
+        background-color: darken(white, 30%);
+      }
+    }
+  }
+
+  .buttonsBox {
+    width: 100%;
+    height: 2rem;
+    margin: 0.5rem 0 1rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .button {
+      width: 40%;
+      border: none;
+      outline: none;
+      background: none;
+      border-radius: 0.5rem;
+      color: white;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+
+      * {
+        transform: all 200ms ease;
+      }
+
+      &.acceptButton {
+        background-color: $success-color;
+
+        &:hover {
+          background-color: darken($success-color, 10%);
+        }
+
+        &:disabled {
+          opacity: 50%;
+
+          &:hover {
+            background-color: $success-color;
+            cursor: default;
+          }
+        }
+      }
+
+      &.cancelButton {
+        background-color: $error-color;
+
+        &:hover {
+          background-color: darken($error-color, 10%);
+        }
+      }
+    }
+  }
+}

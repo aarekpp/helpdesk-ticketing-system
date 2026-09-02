@@ -1,0 +1,112 @@
+@import "../../../../scss/colors.scss";
+@import "../../../../scss/breakpoints.scss";
+
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+
+  .buttonBox {
+    width: 100%;
+    height: 100%;
+
+    .linkButton {
+      width: 100%;
+      height: 2.5rem;
+      background-color: $primary-color;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.5rem;
+      transition: all 0.2s ease;
+
+      .iconBox {
+        height: 100%;
+        display: grid;
+        place-items: center;
+
+        .icon {
+          width: 80%;
+          height: 80%;
+
+          path {
+            fill: white;
+          }
+        }
+      }
+
+      .buttonText {
+        color: white;
+        font-size: 1.1rem;
+      }
+
+      &:link {
+        text-decoration: none;
+      }
+
+      &:hover {
+        transform: translateY(-0.2rem);
+      }
+    }
+  }
+
+  .activeTickets {
+    margin: 1.5rem 0;
+
+    .ticket {
+      border: $border;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      background-color: white;
+
+      .ticketHeader {
+        padding: 0.5rem 0 1rem 0;
+
+        p {
+          font-size: 1.2rem;
+          font-weight: 500;
+        }
+      }
+
+      .ticketContent {
+        p {
+          margin: 0 0 0.5rem 0;
+          font-weight: 500;
+        }
+      }
+
+      .buttonBox {
+        display: grid;
+        place-items: center;
+        margin: 1rem auto 0.5rem auto;
+        width: 90%;
+
+        .button {
+          width: 100%;
+          height: 2.5rem;
+          border-radius: 0.5rem;
+          border: none;
+          outline: none;
+          background-color: $primary-color;
+          color: white;
+          cursor: pointer;
+          transition: all 0.2s ease;
+
+          &:hover {
+            background-color: darken($primary-color, 10%);
+            transform: translateY(-0.2rem);
+          }
+        }
+      }
+    }
+  }
+}
+
+@include respond-to(xl) {
+  .container {
+    width: 80%;
+    margin: auto;
+  }
+}

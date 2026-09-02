@@ -1,0 +1,119 @@
+@import "../../../../scss/colors.scss";
+@import "../../../../scss/breakpoints.scss";
+
+.confirmDeleteOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  overflow: hidden;
+
+  .confirmDeleteContainer {
+    width: 90%;
+    padding: 1.5rem 1rem;
+    border: $border;
+    border-radius: 0.5rem;
+    box-shadow: $shadow;
+    text-align: center;
+    background-color: white;
+
+    .messageHeader {
+      font-size: 1.1rem;
+      margin: 0 0 1rem 0;
+    }
+
+    .messageValue {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin: 0 0 2rem 0;
+    }
+  }
+
+  .confirmDeleteButtons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 2rem;
+
+    .button {
+      width: 100%;
+      height: 2rem;
+      border: none;
+      outline: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 200ms ease;
+
+      &.deleteButton {
+        background-color: $error-color;
+        color: white;
+      }
+
+      &.cancelButton {
+        background-color: $primary-color;
+        color: white;
+      }
+
+      &:hover {
+        font-size: 1.2rem;
+
+        &.deleteButton {
+          background-color: darken($error-color, 8);
+        }
+
+        &.cancelButton {
+          background-color: darken($primary-color, 8);
+        }
+      }
+    }
+  }
+
+  @include respond-to(sm) {
+    .confirmDeleteButtons {
+      .button {
+        height: 2.5rem;
+        font-size: 1.1rem;
+
+        &:hover {
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+
+  @include respond-to(md) {
+    .confirmDeleteContainer {
+      width: 60%;
+
+      .messageHeader {
+        font-size: 1.2rem;
+      }
+
+      .messageValue {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  @include respond-to(lg) {
+    .confirmDeleteContainer {
+      width: 40%;
+
+      .messageHeader {
+        font-size: 1.3rem;
+      }
+
+      .messageValue {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}

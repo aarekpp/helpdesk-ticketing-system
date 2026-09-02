@@ -1,0 +1,62 @@
+@import "../../../../scss/colors.scss";
+@import "../../../../scss/breakpoints.scss";
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  .modalContent {
+    background-color: white;
+    padding: 1.5rem 2rem 2rem 2rem;
+    border-radius: 0.5rem;
+    width: 90%;
+    max-width: 25rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .title {
+    margin: 0 0 1rem 0;
+  }
+
+  .selectContainer {
+    margin: 0 0 1rem 0;
+  }
+
+  .buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .cancelButton,
+  .forwardButton {
+    flex: 1;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    color: white;
+  }
+
+  .cancelButton {
+    background-color: red;
+  }
+
+  .forwardButton {
+    background-color: $primary-color;
+
+    &:disabled {
+      background-color: $text-disabled;
+      cursor: default;
+    }
+  }
+}

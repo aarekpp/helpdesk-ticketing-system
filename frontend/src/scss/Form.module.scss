@@ -1,0 +1,186 @@
+@import "./breakpoints.scss";
+@import "./colors.scss";
+
+.formContainer {
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.form {
+  width: 90%;
+  margin: auto;
+
+  .formHeader {
+    margin: 1.5rem 0;
+    padding: 0 1rem;
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-align: center;
+      line-height: 2.5rem;
+    }
+  }
+
+  .formMain {
+    padding: 0 1rem;
+  }
+
+  .formSection {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 1rem 0;
+
+    .formLabel {
+      font-size: 1.1rem;
+      padding: 0 0 0 0.3rem;
+    }
+
+    .formInput {
+      width: 100%;
+      margin: 0.5rem 0 0 0;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      border: $border;
+      padding: 0 0.5rem;
+      font-size: 1rem;
+
+      &.success {
+        border-color: $success-color;
+        outline: none;
+      }
+
+      &.error {
+        border-color: $error-color;
+        outline: none;
+      }
+    }
+
+    &.buttonSection {
+      margin: 1rem 0 2rem 0;
+      width: 100%;
+      height: 2.5rem;
+
+      .button {
+        width: 100%;
+        height: 100%;
+        border-radius: 0.5rem;
+        border: none;
+        background-color: $primary-color;
+        cursor: pointer;
+        color: white;
+        font-size: 1.1rem;
+        transition: all 200ms ease;
+
+        &:hover {
+          font-size: 1.3rem;
+          background-color: darken($primary-color, 5);
+        }
+      }
+    }
+
+    &.selectSection {
+      position: relative;
+    }
+  }
+
+  .errorInfo {
+    color: $error-color;
+    margin: 0.5rem 0;
+    padding: 0 0 0 0.2rem;
+
+    &.visible {
+      visibility: visible;
+    }
+
+    &.hidden {
+      visibility: hidden;
+    }
+  }
+}
+
+.infoSection {
+  width: 100%;
+
+  .list {
+    padding: 0.5rem 1rem;
+
+    .listElement {
+      font-size: 0.9rem;
+      margin: 0.3rem 0;
+    }
+  }
+}
+
+@include respond-to(sm) {
+  .form {
+    width: 80%;
+  }
+
+  .infoSection {
+    p {
+      font-size: 1.1rem;
+    }
+
+    .list {
+      padding: 0.5rem 2rem;
+
+      .listElement {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@include respond-to(md) {
+  .form {
+    width: 70%;
+  }
+
+  .infoSection {
+    width: 70%;
+  }
+}
+
+@include respond-to(lg) {
+  .form {
+    width: 60%;
+
+    .formSection {
+      .formLabel {
+        font-size: 1.2rem;
+      }
+
+      .formInput {
+        height: 3rem;
+        font-size: 1.1rem;
+      }
+
+      &.buttonSection {
+        height: 3rem;
+
+        .button {
+          font-size: 1.2rem;
+
+          &:hover {
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+  }
+
+  .infoSection {
+    width: 60%;
+  }
+}
+
+@include respond-to(xl) {
+  .form {
+    width: 40%;
+  }
+
+  .infoSection {
+    width: 40%;
+  }
+}

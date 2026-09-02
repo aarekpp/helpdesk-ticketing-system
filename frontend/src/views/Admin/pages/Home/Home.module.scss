@@ -1,0 +1,106 @@
+@import "../../../../scss/colors.scss";
+@import "../../../../scss/breakpoints.scss";
+
+.adminHomeContainer {
+  width: 100%;
+  margin: auto;
+  padding: 1rem 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(5, 1fr);
+
+  .tile {
+    width: 100%;
+    height: 8rem;
+    display: grid;
+    place-items: center;
+
+    .tileButton {
+      width: 80%;
+      height: 80%;
+      border: none;
+      background-color: $primary-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      cursor: pointer;
+
+      .icon {
+        fill: white;
+        width: 3rem;
+        height: 3rem;
+      }
+
+      .tileText {
+        color: white;
+        margin: 0.5rem 0 0 0;
+      }
+
+      &:focus,
+      &:hover {
+        width: 90%;
+        height: 90%;
+        .icon {
+          transform: scale(1.2);
+        }
+        .tileText {
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    * {
+      transition: all 150ms ease;
+    }
+  }
+
+  @include respond-to(sm) {
+    width: 80%;
+    padding: 1.5rem 0;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    .tile {
+      height: 9rem;
+
+      &.accountSettingsTile {
+        grid-column: 1/3;
+
+        .tileButton {
+          width: 90%;
+
+          &:focus,
+          &:hover {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  @include respond-to(md) {
+  }
+
+  @include respond-to(lg) {
+    width: 60%;
+
+    .tile {
+      .tileButton {
+        .icon {
+          fill: white;
+          width: 3.3rem;
+          height: 3.3rem;
+        }
+
+        .tileText {
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+
+  @include respond-to(xl) {
+    width: 50%;
+  }
+}
